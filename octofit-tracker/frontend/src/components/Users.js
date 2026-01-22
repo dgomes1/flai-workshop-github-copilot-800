@@ -16,15 +16,13 @@ function Users() {
   const [saveError, setSaveError] = useState(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
-  const baseUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev`;
-
   useEffect(() => {
     fetchUsers();
     fetchTeams();
   }, []);
 
   const fetchUsers = () => {
-    const apiUrl = `${baseUrl}/api/users/`;
+    const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
     console.log('Users API endpoint:', apiUrl);
     
     fetch(apiUrl)
@@ -49,7 +47,7 @@ function Users() {
   };
 
   const fetchTeams = () => {
-    const apiUrl = `${baseUrl}/api/teams/`;
+    const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -94,7 +92,7 @@ function Users() {
     setSaveError(null);
     setSaveSuccess(false);
 
-    const apiUrl = `${baseUrl}/api/users/${editingUser._id}/`;
+    const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/${editingUser._id}/`;
     
     // Use PATCH for partial update - only send the fields we're editing
     const updateData = {
