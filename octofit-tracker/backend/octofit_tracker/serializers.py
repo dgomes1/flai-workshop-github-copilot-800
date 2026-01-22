@@ -9,10 +9,13 @@ class TeamSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile_image = serializers.URLField(required=False, allow_blank=True)
+    
     class Meta:
         model = User
         fields = ['_id', 'name', 'alias', 'email', 'team_id', 'total_points', 
                   'activities_completed', 'joined_at', 'profile_image']
+        read_only_fields = ['_id', 'total_points', 'activities_completed', 'joined_at']
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
